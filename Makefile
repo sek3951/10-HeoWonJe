@@ -6,3 +6,7 @@ client:client.c
 	gcc -o client client.c
 clean:
 	rm server client
+1:
+	./server 10080
+2:
+	./client localhost 10080
