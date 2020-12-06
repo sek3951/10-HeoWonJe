@@ -14,15 +14,14 @@ char* NumToCard(int num){
 	sprintf(card_number, "%d", number);
 	if(number == 1)
 		card_number[0] = 'A';
-	else if(number == 10)
-		card_number[0] = 'J';
 	else if(number == 11)
-		card_number[0] = 'Q';
+		card_number[0] = 'J';
 	else if(number == 12)
+		card_number[0] = 'Q';
+	else if(number == 0)
 		card_number[0] = 'K';
 	if(num < 14){
 		card_shape[0] = 'S';
-
 	}
 	else if((num >= 14) && (num < 27)){
 		card_shape[0] = 'D';
