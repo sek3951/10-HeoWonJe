@@ -1,14 +1,17 @@
+#include <iostream>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
-#include <stdio.h>
+#include <cstdio>
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include <arpa/inet.h>
 #include <pthread.h>
+#include "common.h"
 
 #define MAXLINE 80
+int deck[52];
 
 void *thread_func(void *arg) {
 	int n;
@@ -17,10 +20,12 @@ void *thread_func(void *arg) {
 	int connfd = *((int*)arg);
 	pthread_detach(pthread_self());
 	free(arg);
-
-	while ((n = read(connfd, buf, MAXLINE)) > 0) {
-		printf("got %d bytes from client.\n", n);	
-		write(connfd, buf, n);
+	while(1){
+		Shuffle(deck);
+		if	((n = read(connfd, buf, MAXLINE)) > 0){
+			printf("got %d bytes from client.\n", n);	
+			write(connfd, buf, n);
+		}
 	}
 	
 	close(connfd);

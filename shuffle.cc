@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <time.h>
 #include "common.h"
+
 void Shuffle(int *deck){
         for(int i = 1; i <= 52; i++)
                 deck[i-1] = i;

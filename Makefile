@@ -1,9 +1,9 @@
 all:client server
 
-server:server.c
-	gcc -o server server.c -lpthread
-client:client.c
-	gcc -o client client.c
+server:server.cc
+	gcc -o server server.cc -lpthread
+client:client.cc
+	gcc -o client client.cc
 clean:
 	rm server client
 1:
