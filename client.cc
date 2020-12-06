@@ -36,11 +36,11 @@ int main (int argc, char *argv[]) {
         printf("connect() failed.\n");
         exit(3);
     }
-    while ((n = read(0, buf, MAXLINE)) > 0) {
-        write(cfd, buf, n);
-        n = read(cfd, buf, MAXLINE);
-        write(1, buf, n);
-    }
+			int a,b;
+			read(cfd,&a,sizeof(int));
+			read(cfd,&b,sizeof(int));
+			printf("a:%d b:%d\n",a,b);
+    
     close(cfd);
 
     return 0;

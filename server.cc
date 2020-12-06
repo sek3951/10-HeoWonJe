@@ -12,6 +12,8 @@
 
 #define MAXLINE 80
 int deck[52];
+int user[4];
+int user_cnt;
 
 void *thread_func(void *arg) {
 	int n;
@@ -20,19 +22,20 @@ void *thread_func(void *arg) {
 	int connfd = *((int*)arg);
 	pthread_detach(pthread_self());
 	free(arg);
-	while(1){
-		Shuffle(deck);
-		if	((n = read(connfd, buf, MAXLINE)) > 0){
-			printf("got %d bytes from client.\n", n);	
-			write(connfd, buf, n);
-		}
-	}
+	
+
+	
+
+	write(connfd,&deck[0],sizeof(int));
+	write(connfd,&deck[1],sizeof(int));
 	
 	close(connfd);
 	return NULL;
 }
 
 int main (int argc, char *argv[]) {
+
+		Shuffle(deck);
     int n, listenfd, connfd, caddrlen;
     struct hostent *h;
     struct sockaddr_in saddr, caddr;

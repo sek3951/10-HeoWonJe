@@ -1,3 +1,3 @@
 //#include <iostream>
 
-void Shuffle(int* deck);
+void Shuffle(int* );
