@@ -8,8 +8,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "common.h"
+using namespace std;
 
 #define MAXLINE 80
+
+
 
 int main (int argc, char *argv[]) {
     int n, cfd;
@@ -39,7 +42,6 @@ int main (int argc, char *argv[]) {
 			int a,b;
 			read(cfd,&a,sizeof(int));
 			read(cfd,&b,sizeof(int));
-			printf("a:%d b:%d\n",a,b);
     
     close(cfd);
 
