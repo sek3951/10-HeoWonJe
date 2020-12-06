@@ -38,6 +38,7 @@ int main (int argc, char *argv[]) {
         printf("connect() failed.\n");
         exit(3);
     }
+
 		int card1,card2;
 		read(cfd,&card1,sizeof(int));
 		read(cfd,&card2,sizeof(int));

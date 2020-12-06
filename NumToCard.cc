@@ -20,7 +20,6 @@ char* NumToCard(int num){
 		card_number[0] = 'Q';
 	else if(number == 12)
 		card_number[0] = 'K';
-
 	if(num < 14){
 		card_shape[0] = 'S';
 
@@ -34,7 +33,6 @@ char* NumToCard(int num){
 	else{
 		card_shape[0] = 'C';
 	}
-
 	strcat(card_shape, card_number);
 
 	return card_shape;
