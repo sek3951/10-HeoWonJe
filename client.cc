@@ -5,20 +5,13 @@
 #include <netdb.h>
 #include <cstdio>
 #include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
 #include "common.h"
 using namespace std;
 
 #define MAXLINE 80
 
-char* ab(int num){
-	char* b=(char*)malloc(2);
-	memset(b,0,8);
-	b[0]='a';
-	b[1]='b';
-	return b;
-}
 
 int main (int argc, char *argv[]) {
     int n, cfd;
@@ -45,12 +38,14 @@ int main (int argc, char *argv[]) {
         printf("connect() failed.\n");
         exit(3);
     }
-			int a,b;
-			read(cfd,&a,sizeof(int));
-			read(cfd,&b,sizeof(int));
-			cout<<ab(a)<<endl;
+		int card1,card2;
+		read(cfd,&card1,sizeof(int));
+		read(cfd,&card2,sizeof(int));
+		printf("Your Card : %s %s\n",NumToCard(card1),NumToCard(card2));
     
-    close(cfd);
+		
+
+		close(cfd);
 
     return 0;
 }
