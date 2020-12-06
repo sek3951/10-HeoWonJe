@@ -9,10 +9,10 @@
 #include <arpa/inet.h>
 #include <pthread.h>
 #include "common.h"
+using namespace std;
 
 #define MAXLINE 80
 int deck[52];
-int user[4];
 int user_cnt;
 
 void *thread_func(void *arg) {
@@ -23,11 +23,12 @@ void *thread_func(void *arg) {
 	pthread_detach(pthread_self());
 	free(arg);
 	
+	int user=user_cnt;
+	user_cnt++;
+	cout<<"your number : "<<user<<endl;
 
-	
-
-	write(connfd,&deck[0],sizeof(int));
-	write(connfd,&deck[1],sizeof(int));
+	write(connfd,&deck[user],sizeof(int));
+	write(connfd,&deck[user+1],sizeof(int));
 	
 	close(connfd);
 	return NULL;

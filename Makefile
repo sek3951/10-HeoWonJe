@@ -2,8 +2,8 @@ all:client server
 
 server:server.o Shuffle.o
 	g++ -o server server.o Shuffle.o -lpthread
-client:client.cc
-	g++ -o client client.cc
+client:client.o 
+	g++ -o client client.o 
 server.o:server.cc
 	g++ -c server.o server.cc
 client.o:client.cc

@@ -1,3 +1,4 @@
 //#include <iostream>
 
-void Shuffle(int* );
+void Shuffle(int* deck);
+char* NumToCard(int num);

@@ -8,8 +8,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include "common.h"
+using namespace std;
 
 #define MAXLINE 80
+
+char* ab(int num){
+	char* b=(char*)malloc(2);
+	memset(b,0,8);
+	b[0]='a';
+	b[1]='b';
+	return b;
+}
 
 int main (int argc, char *argv[]) {
     int n, cfd;
@@ -39,7 +48,7 @@ int main (int argc, char *argv[]) {
 			int a,b;
 			read(cfd,&a,sizeof(int));
 			read(cfd,&b,sizeof(int));
-			printf("a:%d b:%d\n",a,b);
+			cout<<ab(a)<<endl;
     
     close(cfd);
 
