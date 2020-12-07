@@ -2,7 +2,7 @@
 #include "common.h"
 
 using namespace std;
-bool IsBirdCollision(const int bird_x, const int dino_y)
+bool is_birdCollision(const int bird_x, const int dino_y)
 {
 	GoToXY(0, 0);
 	cout << "bird_x : " << bird_x << " dino_y : " << dino_y;

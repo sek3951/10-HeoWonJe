@@ -17,8 +17,8 @@ int main()
 	while (true)		//(v2.0) 게임 루프
 	{
 		//게임 시작시 초기화
-		bool isJumping = false;
-		bool isBottom = true;
+		bool is_jumping = false;
+		bool is_bottom = true;
 		const int gravity = 3;
 
 		int dino_y = DINO_BOTTOM_Y;
@@ -34,7 +34,7 @@ int main()
 		{
 			//(v2.0) 충돌체크 트리의 x값과 공룡의 y값으로 판단
 			if (!bird_or_tree) {
-				if (IsBirdCollision(bird_x, dino_y))
+				if (is_birdCollision(bird_x, dino_y))
 					break;
 			}
 			else {
@@ -43,14 +43,14 @@ int main()
 			}
 
 			//z키가 눌렸고, 바닥이 아닐때 점프
-			if (GetKeyDown() == 'z' && isBottom)
+			if (GetKeyDown() == 'z' && is_bottom)
 			{
-				isJumping = true;
-				isBottom = false;
+				is_jumping = true;
+				is_bottom = false;
 			}
 
 			//점프중이라면 Y를 감소, 점프가 끝났으면 Y를 증가.
-			if (isJumping)
+			if (is_jumping)
 			{
 				dino_y -= gravity;
 			}
@@ -65,7 +65,7 @@ int main()
 			if (dino_y >= DINO_BOTTOM_Y)
 			{
 				dino_y = DINO_BOTTOM_Y;
-				isBottom = true;
+				is_bottom = true;
 			}
 
 			//나무가 왼쪽으로 (x음수) 가도록하고
@@ -74,7 +74,7 @@ int main()
 			//점프의 맨위를 찍으면 점프가 끝난 상황.
 			if (dino_y <= 3)
 			{
-				isJumping = false;
+				is_jumping = false;
 			}
 			if (!bird_or_tree) {
 				bird_x -= 2;
