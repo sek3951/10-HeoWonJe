@@ -8,9 +8,9 @@
 using namespace std;
 
 //공룡을 그리는 함수
-void DrawDino(int dinoY)
+void DrawDino(int dino_y)
 {
-	GoToXY(0, dinoY);
+	GoToXY(0, dino_y);
 	static bool legFlag = true;
 	cout << "        $$$$$$$ \n";
 	cout << "       $$ $$$$$$\n";

@@ -9,9 +9,9 @@
 void SetConsoleView();
 void GoToXY(int x, int y);
 int GetKeyDown();
-void DrawDino(int dinoY);
-void DrawTree(int treeX);
+void DrawDino(int dino_y);
+void DrawTree(int tree_x);
 void DrawGameOver(const int score);
-bool IsCollision(const int treeX, const int dinoY);
-void DrawBird(int birdX);
-bool IsBirdCollision(const int birdX, const int dinoY);
+bool IsCollision(const int tree_x, const int dino_y);
+void DrawBird(int bird_x);
+bool IsBirdCollision(const int bird_x, const int dino_y);

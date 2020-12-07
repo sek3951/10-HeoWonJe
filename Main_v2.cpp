@@ -21,9 +21,9 @@ int main()
 		bool isBottom = true;
 		const int gravity = 3;
 
-		int dinoY = DINO_BOTTOM_Y;
-		int treeX = TREE_BOTTOM_X;
-		int birdX = Bird_BOTTOM_X;
+		int dino_y = DINO_BOTTOM_Y;
+		int tree_x = TREE_BOTTOM_X;
+		int bird_x = Bird_BOTTOM_X;
 		srand(time(NULL));
 		int bird_or_tree = rand() % 2;
 		int score = 0;
@@ -34,11 +34,11 @@ int main()
 		{
 			//(v2.0) 충돌체크 트리의 x값과 공룡의 y값으로 판단
 			if (!bird_or_tree) {
-				if (IsBirdCollision(birdX, dinoY))
+				if (IsBirdCollision(bird_x, dino_y))
 					break;
 			}
 			else {
-				if (IsCollision(treeX, dinoY))
+				if (IsCollision(tree_x, dino_y))
 					break;
 			}
 
@@ -52,17 +52,17 @@ int main()
 			//점프중이라면 Y를 감소, 점프가 끝났으면 Y를 증가.
 			if (isJumping)
 			{
-				dinoY -= gravity;
+				dino_y -= gravity;
 			}
 			else
 			{
-				dinoY += gravity;
+				dino_y += gravity;
 			}
 
 			//Y가 계속해서 증가하는걸 막기위해 바닥을 지정.
-			if (dinoY >= DINO_BOTTOM_Y)
+			if (dino_y >= DINO_BOTTOM_Y)
 			{
-				dinoY = DINO_BOTTOM_Y;
+				dino_y = DINO_BOTTOM_Y;
 				isBottom = true;
 			}
 
@@ -70,31 +70,31 @@ int main()
 			//나무의 위치가 왼쪽 끝으로가면 다시 오른쪽 끝으로 소환.
 
 			//점프의 맨위를 찍으면 점프가 끝난 상황.
-			if (dinoY <= 3)
+			if (dino_y <= 3)
 			{
 				isJumping = false;
 			}
 			if (!bird_or_tree) {
-				birdX -= 2;
-				if (birdX <= 0) {
-					birdX = TREE_BOTTOM_X;
+				bird_x -= 2;
+				if (bird_x <= 0) {
+					bird_x = TREE_BOTTOM_X;
 					srand(time(NULL));
 					bird_or_tree = rand() % 2;
 				}
 			}
 			else {
-				treeX -= 2;
-				if (treeX <= 0) {
-					treeX = TREE_BOTTOM_X;
+				tree_x -= 2;
+				if (tree_x <= 0) {
+					tree_x = TREE_BOTTOM_X;
 					srand(time(NULL));
 					bird_or_tree = rand() % 2;
 				}
 			}
-			DrawDino(dinoY);		//draw dino
+			DrawDino(dino_y);		//draw dino
 			if (!bird_or_tree)
-				DrawBird(birdX);		//draw bird
+				DrawBird(bird_x);		//draw bird
 			else
-				DrawTree(treeX);
+				DrawTree(tree_x);
 			//(v2.0)
 			curr = clock();			//현재시간 받아오기
 			if (((curr - start) / CLOCKS_PER_SEC) >= 1)	// 1초가 넘었을떄

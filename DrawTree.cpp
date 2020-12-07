@@ -8,16 +8,16 @@
 using namespace std;
 
 //나무를 그리는 함수
-void DrawTree(int treeX)
+void DrawTree(int tree_x)
 {
-	GoToXY(treeX, TREE_BOTTOM_Y);
+	GoToXY(tree_x, TREE_BOTTOM_Y);
 	cout << "$$$$";
-	GoToXY(treeX, TREE_BOTTOM_Y + 1);
+	GoToXY(tree_x, TREE_BOTTOM_Y + 1);
 	cout << " $$ ";
-	GoToXY(treeX, TREE_BOTTOM_Y + 2);
+	GoToXY(tree_x, TREE_BOTTOM_Y + 2);
 	cout << " $$ ";
-	GoToXY(treeX, TREE_BOTTOM_Y + 3);
+	GoToXY(tree_x, TREE_BOTTOM_Y + 3);
 	cout << " $$ ";
-	GoToXY(treeX, TREE_BOTTOM_Y + 4);
+	GoToXY(tree_x, TREE_BOTTOM_Y + 4);
 	cout << " $$ ";
 }

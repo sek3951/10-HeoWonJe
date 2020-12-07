@@ -1,17 +1,17 @@
 #include<iostream>
 #include "common.h"
 using namespace std;
-void DrawBird(int birdX)
+void DrawBird(int bird_x)
 {
-	GoToXY(birdX, Bird_BOTTOM_Y);
+	GoToXY(bird_x, Bird_BOTTOM_Y);
 	cout << "       $$$";
-	GoToXY(birdX, Bird_BOTTOM_Y + 1);
+	GoToXY(bird_x, Bird_BOTTOM_Y + 1);
 	cout << "<<$ $$$$$";
-	GoToXY(birdX, Bird_BOTTOM_Y + 2);
+	GoToXY(bird_x, Bird_BOTTOM_Y + 2);
 	cout << "  $$$$$ ";
-	GoToXY(birdX, Bird_BOTTOM_Y + 3);
+	GoToXY(bird_x, Bird_BOTTOM_Y + 3);
 	cout << "    $$$$$";
-	GoToXY(birdX, Bird_BOTTOM_Y + 4);
+	GoToXY(bird_x, Bird_BOTTOM_Y + 4);
 	cout << "       $$$";
 
 }
