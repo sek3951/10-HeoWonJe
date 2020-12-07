@@ -1,6 +1,7 @@
 //[C/C++ game] very simple google dinosaur. (by. BlockDMask)
 //2019.12.03 (v2.0)점수 추가, 충돌처리 추가.
 #include<cstdio>
+#include<cstdlib>
 #include<windows.h>
 #include<conio.h>
 #include<ctime>
@@ -22,7 +23,9 @@ int main()
 
 		int dinoY = DINO_BOTTOM_Y;
 		int treeX = TREE_BOTTOM_X;
-
+		int birdX = Bird_BOTTOM_X;
+		srand(time(NULL));
+		int bird_or_tree = rand() % 2;
 		int score = 0;
 		clock_t start, curr;	//점수 변수 초기화
 		start = clock();		//시작시간 초기화
@@ -30,8 +33,14 @@ int main()
 		while (true)	//한 판에 대한 루프
 		{
 			//(v2.0) 충돌체크 트리의 x값과 공룡의 y값으로 판단
-			if (IsCollision(treeX, dinoY))
-				break;
+			if (!bird_or_tree) {
+				if (IsBirdCollision(birdX, dinoY))
+					break;
+			}
+			else {
+				if (IsCollision(treeX, dinoY))
+					break;
+			}
 
 			//z키가 눌렸고, 바닥이 아닐때 점프
 			if (GetKeyDown() == 'z' && isBottom)
@@ -59,21 +68,33 @@ int main()
 
 			//나무가 왼쪽으로 (x음수) 가도록하고
 			//나무의 위치가 왼쪽 끝으로가면 다시 오른쪽 끝으로 소환.
-			treeX -= 2;
-			if (treeX <= 0)
-			{
-				treeX = TREE_BOTTOM_X;
-			}
 
 			//점프의 맨위를 찍으면 점프가 끝난 상황.
 			if (dinoY <= 3)
 			{
 				isJumping = false;
 			}
-
+			if (!bird_or_tree) {
+				birdX -= 2;
+				if (birdX <= 0) {
+					birdX = TREE_BOTTOM_X;
+					srand(time(NULL));
+					bird_or_tree = rand() % 2;
+				}
+			}
+			else {
+				treeX -= 2;
+				if (treeX <= 0) {
+					treeX = TREE_BOTTOM_X;
+					srand(time(NULL));
+					bird_or_tree = rand() % 2;
+				}
+			}
 			DrawDino(dinoY);		//draw dino
-			DrawTree(treeX);		//draw Tree
-
+			if (!bird_or_tree)
+				DrawBird(birdX);		//draw bird
+			else
+				DrawTree(treeX);
 			//(v2.0)
 			curr = clock();			//현재시간 받아오기
 			if (((curr - start) / CLOCKS_PER_SEC) >= 1)	// 1초가 넘었을떄
