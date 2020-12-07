@@ -10,6 +10,9 @@
 
 using namespace std;
 int leader_board[5];
+
+
+
 int main()
 {
 	SetConsoleView();
@@ -17,15 +20,16 @@ int main()
 	while (true)		//(v2.0) 게임 루프
 	{
 		//게임 시작시 초기화
-		bool is_jumping = false;
+		/*bool is_jumping = false;
 		bool is_bottom = true;
-		int is_crowd = 0;
+		int is_crowd = 0;*/
+		Status dinosour;
+		dinosour.StatusInit();
 		int input = 0;
 		
 
-		int dino_y = DINO_BOTTOM_Y;
-		int tree_x = TREE_BOTTOM_X;
-		int bird_x = BIRD_BOTTOM_X;
+		Where them;
+		them.WhereInit();
 		srand(time(NULL));
 		int bird_or_tree = rand() % 2;
 		int score = 0;
@@ -36,47 +40,47 @@ int main()
 		{
 			//(v2.0) 충돌체크 트리의 x값과 공룡의 y값으로 판단
 			if (!bird_or_tree) {
-				if (IsBirdCollision(bird_x, dino_y,is_crowd))
+				if (IsBirdCollision(them.GetBirdX(), them.GetDinoY(), dinosour.GetIsCrowd()))
 					break;
 			}
 			else {
-				if (IsTreeCollision(tree_x, dino_y))
+				if (IsTreeCollision(them.GetTreeX(), them.GetDinoY()))
 					break;
 			}
 
 			//z키가 눌렸고, 바닥이 아닐때 점프
 			
-			if ((input = GetKeyDown())  && is_bottom)
+			if ((input = GetKeyDown())  && dinosour.GetIsBottom())
 			{
 				if (input == 'z') {
-					is_jumping = true;
-					is_bottom = false;
+					dinosour.SetIsJumping(true);
+					dinosour.SetIsBottom(false);
 				}
 				else if(input == 'x')
-					is_crowd = CROWD_TIME;
+					dinosour.SetIsCrowd(CROWD_TIME);
 			}
 
 			
 
 			//점프중이라면 Y를 감소, 점프가 끝났으면 Y를 증가.
-			if (is_jumping)
+			if (dinosour.GetIsJumping())
 			{
-				dino_y -= GRAVITY;
+				them.DinoYMinus(GRAVITY);
 			}
 			else
 			{
-				dino_y += GRAVITY;
+				them.DinoYPlus(GRAVITY);
 			}
 
-			if (is_crowd)
-				is_crowd--;
+			if (dinosour.GetIsCrowd())
+				dinosour.SetIsCrowd(dinosour.GetIsCrowd()-1);
 
 
 			//Y가 계속해서 증가하는걸 막기위해 바닥을 지정.
-			if (dino_y >= DINO_BOTTOM_Y)
+			if (them.GetDinoY() >= DINO_BOTTOM_Y)
 			{
-				dino_y = DINO_BOTTOM_Y;
-				is_bottom = true;
+				them.SetDinoY(DINO_BOTTOM_Y);
+				dinosour.SetIsBottom(true);
 			}
 
 			//Y가 계속해서 감소하는 걸 막기 위해 시간을 지정
@@ -86,39 +90,39 @@ int main()
 			//나무의 위치가 왼쪽 끝으로가면 다시 오른쪽 끝으로 소환.
 
 			//점프의 맨위를 찍으면 점프가 끝난 상황.
-			if (dino_y <= 3)
+			if (them.GetDinoY() <= 3)
 			{
-				is_jumping = false;
+				dinosour.SetIsJumping(false);
 			}
 			//3초가 지나면 다시 일어남
 			
 
 			if (!bird_or_tree) {
-				bird_x -= 2;
-				if (bird_x <= 0) {
-					bird_x = TREE_BOTTOM_X;
+				them.BirdXMinus(2);
+				if (them.GetBirdX() <= 0) {
+					them.SetBirdX(BIRD_BOTTOM_X);
 					srand(time(NULL));
 					bird_or_tree = rand() % 2;
 				}
 			}
 			else {
-				tree_x -= 2;
-				if (tree_x <= 0) {
-					tree_x = TREE_BOTTOM_X;
+				them.TreeXMinus(2);
+				if (them.GetTreeX() <= 0) {
+					them.SetTreeX(TREE_BOTTOM_X);
 					srand(time(NULL));
 					bird_or_tree = rand() % 2;
 				}
 			}
-			if (is_crowd)
+			if (dinosour.GetIsCrowd())
 				DrawDinoCrowd();
 			else
-				DrawDino(dino_y);		
+				DrawDino(them.GetDinoY());		
 			
 
 			if (!bird_or_tree)
-				DrawBird(bird_x);		//나무 혹은 새가 랜덤으로 등장
+				DrawBird(them.GetBirdX());		//나무 혹은 새가 랜덤으로 등장
 			else
-				DrawTree(tree_x);
+				DrawTree(them.GetTreeX());
 			//(v2.0)
 			curr = clock();			//현재시간 받아오기
 			if (((curr - start) / CLOCKS_PER_SEC) >= 1)	// 1초가 넘었을떄
