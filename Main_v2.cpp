@@ -9,17 +9,16 @@
 #include "common.h"
 
 using namespace std;
-
+int leader_board[5];
 int main()
 {
 	SetConsoleView();
-
+	
 	while (true)		//(v2.0) 게임 루프
 	{
 		//게임 시작시 초기화
 		bool is_jumping = false;
 		bool is_bottom = true;
-		bool is_crowd = false;
 		const int gravity = 3;
 
 		int dino_y = DINO_BOTTOM_Y;
@@ -35,11 +34,11 @@ int main()
 		{
 			//(v2.0) 충돌체크 트리의 x값과 공룡의 y값으로 판단
 			if (!bird_or_tree) {
-				if (IsBirdCollision(bird_x, dino_y))
+				if (is_birdCollision(bird_x, dino_y))
 					break;
 			}
 			else {
-				if (IsTreeCollision(tree_x, dino_y))
+				if (IsCollision(tree_x, dino_y))
 					break;
 			}
 
@@ -60,9 +59,7 @@ int main()
 				dino_y += gravity;
 			}
 
-			if (is_crowd) {
-				
-			}
+
 
 
 			//Y가 계속해서 증가하는걸 막기위해 바닥을 지정.
@@ -117,7 +114,22 @@ int main()
 		}
 
 		//(v2.0) 게임 오버 메뉴
-		DrawGameOver(score);
+		if (leader_board[4] < score) {
+			leader_board[4] = score;
+			int i = 3;
+			int tmp;
+			while (i >= 0) {
+				if (leader_board[i] < leader_board[i + 1]) {
+					tmp = leader_board[i + 1];
+					leader_board[i + 1] = leader_board[i];
+					leader_board[i] = tmp;
+					i--;
+				}
+				else
+					break;
+			}
+		}
+		DrawGameOver(score, leader_board);
 	}
 	return 0;
 }
