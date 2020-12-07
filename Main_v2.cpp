@@ -19,6 +19,7 @@ int main()
 		//게임 시작시 초기화
 		bool is_jumping = false;
 		bool is_bottom = true;
+		bool is_crowd = false;
 		const int gravity = 3;
 
 		int dino_y = DINO_BOTTOM_Y;
@@ -34,7 +35,7 @@ int main()
 		{
 			//(v2.0) 충돌체크 트리의 x값과 공룡의 y값으로 판단
 			if (!bird_or_tree) {
-				if (is_birdCollision(bird_x, dino_y))
+				if (IsBirdCollision(bird_x, dino_y))
 					break;
 			}
 			else {
@@ -59,7 +60,9 @@ int main()
 				dino_y += gravity;
 			}
 
-
+			if (is_crowd) {
+				
+			}
 
 
 			//Y가 계속해서 증가하는걸 막기위해 바닥을 지정.

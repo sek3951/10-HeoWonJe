@@ -14,4 +14,4 @@ void DrawTree(int tree_x);
 void DrawGameOver(const int score);
 bool IsCollision(const int tree_x, const int dino_y);
 void DrawBird(int bird_x);
-bool is_birdCollision(const int bird_x, const int dino_y);
+bool IsBirdCollision(const int bird_x, const int dino_y);
