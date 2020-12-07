@@ -39,7 +39,7 @@ int main()
 					break;
 			}
 			else {
-				if (IsCollision(tree_x, dino_y))
+				if (IsTreeCollision(tree_x, dino_y))
 					break;
 			}
 
