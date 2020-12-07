@@ -61,6 +61,7 @@ int main()
 
 
 
+
 			//Y가 계속해서 증가하는걸 막기위해 바닥을 지정.
 			if (dino_y >= DINO_BOTTOM_Y)
 			{
@@ -92,9 +93,9 @@ int main()
 					bird_or_tree = rand() % 2;
 				}
 			}
-			DrawDino(dino_y);		//draw dino
+			DrawDino(dino_y);		
 			if (!bird_or_tree)
-				DrawBird(bird_x);		//draw bird
+				DrawBird(bird_x);		//나무 혹은 새가 랜덤으로 등장
 			else
 				DrawTree(tree_x);
 			//(v2.0)
