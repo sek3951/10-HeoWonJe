@@ -23,7 +23,7 @@ int main()
 
 		int dino_y = DINO_BOTTOM_Y;
 		int tree_x = TREE_BOTTOM_X;
-		int bird_x = Bird_BOTTOM_X;
+		int bird_x = BIRD_BOTTOM_X;
 		srand(time(NULL));
 		int bird_or_tree = rand() % 2;
 		int score = 0;
@@ -58,6 +58,8 @@ int main()
 			{
 				dino_y += gravity;
 			}
+
+
 
 			//Y가 계속해서 증가하는걸 막기위해 바닥을 지정.
 			if (dino_y >= DINO_BOTTOM_Y)
