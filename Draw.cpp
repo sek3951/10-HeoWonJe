@@ -63,9 +63,9 @@ void DrawDino(int dino_y)
 		legFlag = true;
 	}
 }
-void DrawDinoCrowd(int dino_y)
+void DrawDinoCrowd()
 {
-	GoToXY(0, 18);
+	GoToXY(0, 17);
 	cout << "                $$$$$$$ \n";
 	cout << "$$      $$$$$  $$ $$$$$$\n";
 	cout << "$$$$   $$$$$$$$$$$$$$$$$\n";

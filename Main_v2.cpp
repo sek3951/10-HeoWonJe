@@ -19,7 +19,9 @@ int main()
 		//게임 시작시 초기화
 		bool is_jumping = false;
 		bool is_bottom = true;
-		const int gravity = 3;
+		int is_crowd = 0;
+		int input = 0;
+		
 
 		int dino_y = DINO_BOTTOM_Y;
 		int tree_x = TREE_BOTTOM_X;
@@ -34,7 +36,7 @@ int main()
 		{
 			//(v2.0) 충돌체크 트리의 x값과 공룡의 y값으로 판단
 			if (!bird_or_tree) {
-				if (IsBirdCollision(bird_x, dino_y))
+				if (IsBirdCollision(bird_x, dino_y,is_crowd))
 					break;
 			}
 			else {
@@ -43,23 +45,31 @@ int main()
 			}
 
 			//z키가 눌렸고, 바닥이 아닐때 점프
-			if (GetKeyDown() == 'z' && is_bottom)
+			
+			if ((input = GetKeyDown())  && is_bottom)
 			{
-				is_jumping = true;
-				is_bottom = false;
+				if (input == 'z') {
+					is_jumping = true;
+					is_bottom = false;
+				}
+				else if(input == 'x')
+					is_crowd = CROWD_TIME;
 			}
+
+			
 
 			//점프중이라면 Y를 감소, 점프가 끝났으면 Y를 증가.
 			if (is_jumping)
 			{
-				dino_y -= gravity;
+				dino_y -= GRAVITY;
 			}
 			else
 			{
-				dino_y += gravity;
+				dino_y += GRAVITY;
 			}
 
-
+			if (is_crowd)
+				is_crowd--;
 
 
 			//Y가 계속해서 증가하는걸 막기위해 바닥을 지정.
@@ -69,6 +79,9 @@ int main()
 				is_bottom = true;
 			}
 
+			//Y가 계속해서 감소하는 걸 막기 위해 시간을 지정
+			
+
 			//나무가 왼쪽으로 (x음수) 가도록하고
 			//나무의 위치가 왼쪽 끝으로가면 다시 오른쪽 끝으로 소환.
 
@@ -77,6 +90,9 @@ int main()
 			{
 				is_jumping = false;
 			}
+			//3초가 지나면 다시 일어남
+			
+
 			if (!bird_or_tree) {
 				bird_x -= 2;
 				if (bird_x <= 0) {
@@ -93,7 +109,12 @@ int main()
 					bird_or_tree = rand() % 2;
 				}
 			}
-			DrawDino(dino_y);		
+			if (is_crowd)
+				DrawDinoCrowd();
+			else
+				DrawDino(dino_y);		
+			
+
 			if (!bird_or_tree)
 				DrawBird(bird_x);		//나무 혹은 새가 랜덤으로 등장
 			else

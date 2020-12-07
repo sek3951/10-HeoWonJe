@@ -21,12 +21,12 @@ bool IsTreeCollision(const int tree_x, const int dino_y)
 	}
 	return false;
 }
-bool IsBirdCollision(const int bird_x, const int dino_y)
+bool IsBirdCollision(const int bird_x, const int dino_y, const int is_crowd)
 {
 	GoToXY(0, 0);
 	cout << "bird_x : " << bird_x << " dino_y : " << dino_y;
 	if (bird_x <= 10 && bird_x >= 6 &&
-		dino_y <= 15)
+		!is_crowd)
 	{
 		return true;
 	}
