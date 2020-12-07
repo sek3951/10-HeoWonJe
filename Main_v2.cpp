@@ -34,11 +34,11 @@ int main()
 		{
 			//(v2.0) 충돌체크 트리의 x값과 공룡의 y값으로 판단
 			if (!bird_or_tree) {
-				if (is_birdCollision(bird_x, dino_y))
+				if (IsBirdCollision(bird_x, dino_y))
 					break;
 			}
 			else {
-				if (IsCollision(tree_x, dino_y))
+				if (IsTreeCollision(tree_x, dino_y))
 					break;
 			}
 
