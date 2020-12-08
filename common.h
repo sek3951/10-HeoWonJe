@@ -22,6 +22,7 @@ void DrawBird(int bird_x);
 bool IsBirdCollision(const int bird_x, const int dino_y, const int is_crowd);
 bool IsCoinCollision(const int coin_x, const int dino_y);
 bool IsLifeCollision(const int life_x, const int dino_y);
+bool cmp(int a, int b);
 
 //class
 class Status {
