@@ -37,12 +37,16 @@ int main()
 		{
 			//(v2.0) 충돌체크 트리의 x값과 공룡의 y값으로 판단
 			if (!bird_or_tree) {
-				if (IsBirdCollision(them.GetBirdX(), them.GetDinoY(), dinosour.GetIsCrowd()))
+				if (IsBirdCollision(them.GetBirdX(), them.GetDinoY(), dinosour.GetIsCrowd())) {
+					PlaySound(TEXT("collisionsound.wav"), 0, SND_FILENAME | SND_ASYNC);
 					break;
+				}	
 			}
 			else {
-				if (IsTreeCollision(them.GetTreeX(), them.GetDinoY()))
+				if (IsTreeCollision(them.GetTreeX(), them.GetDinoY())) {
+					PlaySound(TEXT("collisionsound.wav"), 0, SND_FILENAME | SND_ASYNC);
 					break;
+				}	
 			}
 
 			//z키가 눌렸고, 바닥이 아닐때 점프
@@ -56,7 +60,6 @@ int main()
 				}
 				else if(input == 'x')
 					dinosour.SetIsCrowd(CROWD_TIME);
-					//PlaySound(TEXT("crowdsound.wav"), 0, SND_FILENAME | SND_ASYNC);
 			}
 
 			
