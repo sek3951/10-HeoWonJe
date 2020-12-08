@@ -1,5 +1,6 @@
 #pragma once
-
+#include<vector>
+#include<algorithm>
 //constant
 #define DINO_BOTTOM_Y 12
 #define TREE_BOTTOM_Y 20
@@ -16,7 +17,7 @@ int GetKeyDown();
 void DrawDino(int dino_y);
 void DrawTree(int tree_x);
 void DrawDinoCrowd();
-void DrawGameOver(const int score, const int leader_board[]);
+void DrawGameOver(const int score);
 bool IsTreeCollision(const int tree_x, const int dino_y);
 void DrawBird(int bird_x);
 bool IsBirdCollision(const int bird_x, const int dino_y, const int is_crowd);

@@ -6,13 +6,9 @@
 #include<conio.h>
 #include<ctime>
 #include<iostream>
-#include<algorithm>
 #include "common.h"
 
 using namespace std;
-int leader_board[5];
-
-
 
 int main()
 {
@@ -140,13 +136,13 @@ int main()
 		}
 
 		//(v2.0) 게임 오버 메뉴
-		if (leader_board[4] < score) {
+		/*if (leader_board[4] < score) {
 			leader_board[4] = score;
 			int i = 3;
 			int tmp;
 			sort(leader_board, leader_board + 5,cmp);
-		}
-		DrawGameOver(score, leader_board);
+		}*/
+		DrawGameOver(score);
 	}
 	return 0;
 }
