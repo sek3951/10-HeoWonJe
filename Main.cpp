@@ -135,9 +135,13 @@ int main()
 			Sleep(60);
 			system("cls");	//clear
 			level = score / 10;
+
 			//(v2.0) 점수출력을 1초마다 해주는것이 아니라 항상 출력해주면서, 1초가 지났을때 ++ 해줍니다.
 			GoToXY(22, 0);	//커서를 가운데 위쪽으로 옮긴다. 콘솔창이 cols=100이니까 2*x이므로 22정도 넣어줌
 			cout << "Score : " << score;	//점수 출력해줌.
+
+			GoToXY(35, 0);
+			cout << "Stage : " << level + 1;
 		}
 
 		//(v2.0) 게임 오버 메뉴
