@@ -13,20 +13,18 @@ using namespace std;
 int main()
 {
 	SetConsoleView();
-	
+	LeaderBoard lb;
+
 	while (true)		//(v2.0) 게임 루프
 	{
 		//게임 시작시 초기화
-		/*bool is_jumping = false;
-		bool is_bottom = true;
-		int is_crowd = 0;*/
 		Status dinosour;
-		dinosour.StatusInit();
+		Where them;
 		int input = 0;
 		
-
-		Where them;
+		dinosour.StatusInit();
 		them.WhereInit();
+
 		srand(time(NULL));
 		int bird_or_tree = rand() % 2;
 		int score = 0;
@@ -136,13 +134,11 @@ int main()
 		}
 
 		//(v2.0) 게임 오버 메뉴
-		/*if (leader_board[4] < score) {
-			leader_board[4] = score;
-			int i = 3;
-			int tmp;
-			sort(leader_board, leader_board + 5,cmp);
-		}*/
+
 		DrawGameOver(score);
+		lb.LeaderBoardPush(score);
+		lb.LeaderBoardSort();
+		lb.ShowLeaderBoard();
 	}
 	return 0;
 }

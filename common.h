@@ -1,6 +1,10 @@
 #pragma once
+#include <iostream>
 #include<vector>
 #include<algorithm>
+
+using namespace std;
+
 //constant
 #define DINO_BOTTOM_Y 12
 #define TREE_BOTTOM_Y 20
@@ -9,6 +13,7 @@
 #define BIRD_BOTTOM_X 45
 #define GRAVITY 3
 #define CROWD_TIME 10
+#define LEADER_BOARD_MAX 5
 
 //function
 void SetConsoleView();
@@ -23,7 +28,7 @@ void DrawBird(int bird_x);
 bool IsBirdCollision(const int bird_x, const int dino_y, const int is_crowd);
 bool IsCoinCollision(const int coin_x, const int dino_y);
 bool IsLifeCollision(const int life_x, const int dino_y);
-bool cmp(int a, int b);
+bool Cmp(int a, int b);
 
 //class
 class Status {
@@ -58,4 +63,13 @@ public:
 	void DinoYMinus(int);
 	void BirdXMinus(int);
 	void TreeXMinus(int);
+};
+
+class LeaderBoard {
+private:
+	vector<int>leader_board;
+public:
+	void LeaderBoardPush(int);
+	void ShowLeaderBoard();
+	void LeaderBoardSort();
 };

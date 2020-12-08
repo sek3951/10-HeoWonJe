@@ -1,5 +1,6 @@
 #include "common.h"
-bool cmp(int a, int b) {
+
+bool Cmp(int a, int b) {
 	if (a > b)
 		return true;
 	else
