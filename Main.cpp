@@ -59,7 +59,7 @@ int main()
 					PlaySound(TEXT("jumpsound.wav"), 0, SND_FILENAME | SND_ASYNC);
 				}
 				else if(input == 'x')
-					dinosour.SetIsCrowd(CROWD_TIME);
+					dinosour.SetIsCrowd(CROWD_TIME - level);
 			}
 
 			
