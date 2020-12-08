@@ -67,11 +67,11 @@ int main()
 			//점프중이라면 Y를 감소, 점프가 끝났으면 Y를 증가.
 			if (dinosour.GetIsJumping())
 			{
-				them.DinoYMinus(GRAVITY+level);
+				them.DinoYMinus(GRAVITY);
 			}
 			else
 			{
-				them.DinoYPlus(GRAVITY+level);
+				them.DinoYPlus(GRAVITY);
 			}
 
 			if (dinosour.GetIsCrowd())
@@ -92,7 +92,7 @@ int main()
 			//나무의 위치가 왼쪽 끝으로가면 다시 오른쪽 끝으로 소환.
 
 			//점프의 맨위를 찍으면 점프가 끝난 상황.
-			if (them.GetDinoY() <= (3-level < 1 ? 1 : 3-level))
+			if (them.GetDinoY() <= 3)
 			{
 				dinosour.SetIsJumping(false);
 			}
