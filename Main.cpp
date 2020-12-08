@@ -6,6 +6,7 @@
 #include<conio.h>
 #include<ctime>
 #include<iostream>
+#include<algorithm>
 #include "common.h"
 
 using namespace std;
@@ -143,16 +144,7 @@ int main()
 			leader_board[4] = score;
 			int i = 3;
 			int tmp;
-			while (i >= 0) {
-				if (leader_board[i] < leader_board[i + 1]) {
-					tmp = leader_board[i + 1];
-					leader_board[i + 1] = leader_board[i];
-					leader_board[i] = tmp;
-					i--;
-				}
-				else
-					break;
-			}
+			sort(leader_board, leader_board + 5,cmp);
 		}
 		DrawGameOver(score, leader_board);
 	}
