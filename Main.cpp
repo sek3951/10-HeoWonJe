@@ -22,7 +22,7 @@ int main()
 		//게임 시작시 초기화
 		Status dinosour;
 		Where them;
-		int input = 0;
+		int input = 0,level = 0;
 		
 		dinosour.StatusInit();
 		them.WhereInit();
@@ -67,11 +67,11 @@ int main()
 			//점프중이라면 Y를 감소, 점프가 끝났으면 Y를 증가.
 			if (dinosour.GetIsJumping())
 			{
-				them.DinoYMinus(GRAVITY);
+				them.DinoYMinus(GRAVITY+level);
 			}
 			else
 			{
-				them.DinoYPlus(GRAVITY);
+				them.DinoYPlus(GRAVITY+level);
 			}
 
 			if (dinosour.GetIsCrowd())
@@ -92,7 +92,7 @@ int main()
 			//나무의 위치가 왼쪽 끝으로가면 다시 오른쪽 끝으로 소환.
 
 			//점프의 맨위를 찍으면 점프가 끝난 상황.
-			if (them.GetDinoY() <= 3)
+			if (them.GetDinoY() <= (3-level < 1 ? 1 : 3-level))
 			{
 				dinosour.SetIsJumping(false);
 			}
@@ -100,7 +100,7 @@ int main()
 			
 
 			if (!bird_or_tree) {
-				them.BirdXMinus(2);
+				them.BirdXMinus(2+level);
 				if (them.GetBirdX() <= 0) {
 					them.SetBirdX(BIRD_BOTTOM_X);
 					srand(time(NULL));
@@ -108,7 +108,7 @@ int main()
 				}
 			}
 			else {
-				them.TreeXMinus(2);
+				them.TreeXMinus(2+level);
 				if (them.GetTreeX() <= 0) {
 					them.SetTreeX(TREE_BOTTOM_X);
 					srand(time(NULL));
@@ -134,7 +134,7 @@ int main()
 			}
 			Sleep(60);
 			system("cls");	//clear
-
+			level = score / 10;
 			//(v2.0) 점수출력을 1초마다 해주는것이 아니라 항상 출력해주면서, 1초가 지났을때 ++ 해줍니다.
 			GoToXY(22, 0);	//커서를 가운데 위쪽으로 옮긴다. 콘솔창이 cols=100이니까 2*x이므로 22정도 넣어줌
 			cout << "Score : " << score;	//점수 출력해줌.
