@@ -6,6 +6,7 @@
 #include<queue>
 #include "common.h"
 
+
 using namespace std;
 
 
@@ -33,5 +34,5 @@ void DrawGameOver(const int score)
 
 
 		
-	
+
 }

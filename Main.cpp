@@ -7,6 +7,8 @@
 #include<ctime>
 #include<iostream>
 #include "common.h"
+#include <mmsystem.h>
+#pragma comment(lib,"winmm.lib")
 
 using namespace std;
 
@@ -50,9 +52,11 @@ int main()
 				if (input == 'z') {
 					dinosour.SetIsJumping(true);
 					dinosour.SetIsBottom(false);
+					PlaySound(TEXT("jumpsound.wav"), 0, SND_FILENAME | SND_ASYNC);
 				}
 				else if(input == 'x')
 					dinosour.SetIsCrowd(CROWD_TIME);
+					//PlaySound(TEXT("crowdsound.wav"), 0, SND_FILENAME | SND_ASYNC);
 			}
 
 			
