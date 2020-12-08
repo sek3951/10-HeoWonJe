@@ -65,7 +65,8 @@ void DrawDino(int dino_y)
 }
 void DrawDinoCrowd()
 {
-	GoToXY(0, 17);
+	GoToXY(0, 16);
+	static bool legFlag = true;
 	cout << "                $$$$$$$ \n";
 	cout << "$$      $$$$$  $$ $$$$$$\n";
 	cout << "$$$$   $$$$$$$$$$$$$$$$$\n";
@@ -73,4 +74,16 @@ void DrawDinoCrowd()
 	cout << "  $$$$$$$$$$$$  $$$$$$  \n";
 	cout << "      $$$$$$$$          \n";
 	cout << "       $$$$$$           \n";
+	if (legFlag)
+	{
+		cout << "       $    $$$    \n";
+		cout << "       $$          ";
+		legFlag = false;
+	}
+	else
+	{
+		cout << "       $$$  $     \n";
+		cout << "            $$    ";
+		legFlag = true;
+	}
 }
