@@ -9,5 +9,5 @@
 void SetConsoleView()
 {
 	system("mode con:cols=100 lines=25");
-	system("Final Project - 10Team");
+	system("title Final Project - 10Team");
 }

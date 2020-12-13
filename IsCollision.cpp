@@ -32,25 +32,3 @@ bool IsBirdCollision(const int bird_x, const int dino_y, const int is_crowd)
 	}
 	return false;
 }
-bool IsCoinCollision(const int coin_x, const int dino_y)
-{
-	GoToXY(0, 0);
-	cout << "coin_x : " << coin_x << " dino_y : " << dino_y;
-	if (coin_x <= 8 && coin_x >= 6 &&
-		dino_y <= 15)
-	{
-		return true;
-	}
-	return false;
-}
-bool IsLifeCollision(const int life_x, const int dino_y)
-{
-	GoToXY(0, 0);
-	cout << "life_x : " << life_x << " dino_y : " << dino_y;
-	if (life_x <= 8 && life_x >= 6 &&
-		dino_y <= 15)
-	{
-		return true;
-	}
-	return false;
-}
